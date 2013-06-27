@@ -1,0 +1,88 @@
+GEM
+  remote: http://rubygems.org/
+  specs:
+    activesupport (3.2.13)
+      i18n (= 0.6.1)
+      multi_json (~> 1.0)
+    addressable (2.3.4)
+    async-rack (0.5.1)
+      rack (~> 1.1)
+    backports (3.3.2)
+    builder (3.2.2)
+    coderay (1.0.9)
+    coffee-script (2.2.0)
+      coffee-script-source
+      execjs
+    coffee-script-source (1.6.2)
+    descendants_tracker (0.0.1)
+    em-synchrony (1.0.3)
+      eventmachine (>= 1.0.0.beta.1)
+    em-websocket (0.3.8)
+      addressable (>= 2.1.1)
+      eventmachine (>= 0.12.9)
+    eventmachine (1.0.3)
+    execjs (1.4.0)
+      multi_json (~> 1.0)
+    goliath (1.0.2)
+      async-rack
+      em-synchrony (>= 1.0.0)
+      em-websocket (= 0.3.8)
+      eventmachine (>= 1.0.0.beta.4)
+      http_parser.rb (= 0.5.3)
+      log4r
+      multi_json
+      rack (>= 1.2.2)
+      rack-contrib
+      rack-respond_to
+    grape (0.5.0)
+      activesupport
+      builder
+      hashie (>= 1.2.0)
+      multi_json (>= 1.3.2)
+      multi_xml (>= 0.5.2)
+      rack (>= 1.3.0)
+      rack-accept
+      rack-mount
+      virtus
+    haml (4.0.3)
+      tilt
+    hashie (2.0.5)
+    http_parser.rb (0.5.3)
+    i18n (0.6.1)
+    log4r (1.1.10)
+    method_source (0.8.1)
+    multi_json (1.7.7)
+    multi_xml (0.5.4)
+    pry (0.9.12.2)
+      coderay (~> 1.0.5)
+      method_source (~> 0.8)
+      slop (~> 3.4)
+    pry-nav (0.2.3)
+      pry (~> 0.9.10)
+    rack (1.5.2)
+    rack-accept (0.4.5)
+      rack (>= 0.4)
+    rack-accept-media-types (0.9)
+    rack-contrib (1.1.0)
+      rack (>= 0.9.1)
+    rack-mount (0.8.3)
+      rack (>= 1.0.0)
+    rack-respond_to (0.9.8)
+      rack-accept-media-types (>= 0.6)
+    slop (3.4.5)
+    tilt (1.4.1)
+    virtus (0.5.5)
+      backports (~> 3.3)
+      descendants_tracker (~> 0.0.1)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  coffee-script
+  goliath
+  grape
+  haml
+  pry
+  pry-nav
+  tilt
