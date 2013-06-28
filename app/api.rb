@@ -9,11 +9,19 @@ class Api < Grape::API
 
   mount Controller::Users
 
-  #必要的參數
-  #params {requires :a, :type => String}
-  #for test
   get '/test(.:format)' do
+    #必要的參數
+    #params {requires :a, :type => String}
+    #for test
     data = {:a => params[:a]}
     {:code => 200}.merge!(data)
+  end
+
+  def in_role?(role) 
+    role == @role
+  end
+
+  def assign_role(role)
+    @role = role
   end
 end

@@ -2,7 +2,7 @@ require 'bundler/setup'
 Bundler.require
 
 require 'goliath/websocket'
-require File.dirname(__FILE__) + "/app/api/api"
+require File.dirname(__FILE__) + "/app/api"
 #require File.dirname(__FILE__) + '/config/application'
 
 class Server < Goliath::WebSocket
