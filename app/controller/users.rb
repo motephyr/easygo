@@ -1,6 +1,8 @@
 module Controller
   class Users < Grape::API
 
+    
+
     resource '/users' do
       get '/' do
         'all'

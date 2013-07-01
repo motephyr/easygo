@@ -1,7 +1,8 @@
-require 'bundler'
+require 'simplecov'
+SimpleCov.start
 
+require 'bundler'
 Bundler.setup
-Bundler.require
 
 require 'em-synchrony/em-http'
 require 'goliath/test_helper'

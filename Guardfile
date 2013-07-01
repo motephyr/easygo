@@ -2,9 +2,9 @@
 # More info at https://github.com/guard/guard#readme
 
 guard :rspec do
-  watch(%r{^spec/api/.+_spec\.rb$})
-  watch(%r{^app/(.+)\.rb$}) { "spec" }
-  watch(%r{^app/controller/(.+)\.rb$}) { "spec" }
+  watch('server.rb') { "spec" }
+  watch(%r{^app/(.+)\.rb$}) { "spec/api.rb" }
+  watch(%r{^app/controller/(.+)\.rb$}) { |m| "spec/controller/#{m[1]}_spec.rb" }
   watch(%r{^app/model/(.+)\.rb$}) { "spec" }
 
   watch(%r{^spec/.+_spec\.rb$})

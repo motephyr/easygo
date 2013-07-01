@@ -17,5 +17,7 @@ group :test, :development do
   gem 'em-http-request'
   gem 'guard'
   gem 'guard-rspec'
+  gem 'simplecov'
+  gem 'rack-test'
 end
 
