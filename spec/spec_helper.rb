@@ -14,3 +14,9 @@ RSpec.configure do |c|
     :file_path => /spec\//
   }
 end
+
+def putsInfo
+  puts last_response.status
+  puts last_response.body
+  puts last_response.header
+end
