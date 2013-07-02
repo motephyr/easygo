@@ -1,5 +1,5 @@
-Dir[File.dirname(__FILE__)+"/controller/*.rb"].each {|file| require file}
-Dir[File.dirname(__FILE__)+"/*.rb"].each {|file| require file}
+Dir["app/controller/*.rb"].each {|file| require file}
+Dir["app/model/*.rb"].each {|file| require file}
 
 class Api < Grape::API
 
@@ -7,7 +7,7 @@ class Api < Grape::API
     Rack::Response.new([ e.message ], 500, { "Content-type" => "application/json" }).finish
   end
 
-  mount Controller::Users
+  mount Users
 
   get '/test(.:format)' do
     #必要的參數

@@ -1,13 +1,11 @@
 require 'simplecov'
 SimpleCov.start
 
-require 'bundler'
-Bundler.setup
-
 require 'em-synchrony/em-http'
 require 'goliath/test_helper'
 require 'yajl/json_gem'
-require File.dirname(__FILE__) + "/../server"
+$:.unshift File.expand_path('../..', __FILE__)
+require 'server'
 
 Goliath.env = :test
 

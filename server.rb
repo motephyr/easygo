@@ -2,7 +2,9 @@ require 'bundler/setup'
 Bundler.require
 
 require 'goliath/websocket'
-require File.dirname(__FILE__) + "/app/api"
+$:.unshift File.expand_path('..', __FILE__)
+require 'app/api'
+
 #require File.dirname(__FILE__) + '/config/application'
 
 class Server < Goliath::WebSocket
@@ -32,17 +34,31 @@ class Server < Goliath::WebSocket
     env.logger.error error
   end
 
+  def on_body(env, data)
+    if env.respond_to?(:handler)
+      env.handler.receive_data(data)
+    else
+      env['params'] = data
+    end
+  end
+
   def response(env)
-    if env['REQUEST_PATH'] == '/chat'
+    case env['REQUEST_PATH']
+    when '/chat'
       super(env)
-    elsif env['REQUEST_PATH'] == '/app.js'
+    when '/app.js'
       [200, {'Content-Type' => 'application/javascript'}, coffee(:app)]
-    elsif env['REQUEST_PATH'] == '/'
+    when '/'
       [200, {}, haml(:index)]
     else
       Api.call(env) 
     end
   end
+
+
 end
+
+
+
 
 #binding.pry
