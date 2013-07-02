@@ -1,5 +1,5 @@
-# Running
-To run the app:
+easygo
+======
 
-    $ ruby server.rb -s --config ./config/server.rb
-    It will be accessible on port 9000
+EasyGo。以Ruby的Goliath為核心，為簡易開發即時性且具高效能的Server而建立。
+
