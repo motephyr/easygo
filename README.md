@@ -7,7 +7,7 @@ EasyGo。以Ruby的Goliath為核心，為個人簡易開發即時性且具高效
 ----------
 
 ###Grape
-做為easygo的Router機制
+做為easygo的Router機制，已完成Restful機制
 
 ###Postgresql
 與postgresql DB做連接
