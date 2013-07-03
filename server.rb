@@ -46,8 +46,6 @@ class Server < Goliath::WebSocket
     case env['REQUEST_PATH']
     when '/chat'
       super(env)
-    when '/app.js'
-      [200, {'Content-Type' => 'application/javascript'}, coffee(:app)]
     when '/'
       [200, {}, haml(:index)]
     else
