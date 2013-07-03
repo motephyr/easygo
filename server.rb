@@ -36,7 +36,7 @@ class Server < Goliath::WebSocket
 
   def on_body(env, data)
     if env.respond_to?(:handler)
-      env.handler.receive_data(data)
+      super env, data
     else
       env['params'] = data
     end

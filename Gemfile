@@ -11,16 +11,16 @@ gem "grape"
 #C's json Parser
 gem 'yajl-ruby'
 
-#debug
-gem "pry"
-gem "pry-nav"
-
 #postgres
 gem 'pg'
 gem 'em-postgresql-adapter', :git => 'git://github.com/leftbee/em-postgresql-adapter.git'
 gem 'rack-fiber_pool',  :require => 'rack/fiber_pool'
 gem 'em-synchrony', :require => 'em-synchrony'
 gem 'activerecord', '~>3.1.0'
+
+#debug
+gem "pry"
+gem "pry-nav"
 
 group :test, :development do
   gem "rspec", "~> 2.0"

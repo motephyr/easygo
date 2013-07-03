@@ -10,11 +10,9 @@ class Api < Grape::API
   mount Users
 
   get '/test(.:format)' do
-    #必要的參數
-    #params {requires :a, :type => String}
-    #for test
-    data = {:a => params[:a]}
-    {:code => 200}.merge!(data)
+    params do |p|
+      {p => params[p]}
+    end
   end
 
   def in_role?(role) 
