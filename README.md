@@ -12,8 +12,8 @@ EasyGo。以Ruby的Goliath為核心，為個人簡易開發即時性且具高效
 ###Postgresql
 與postgresql DB做連接
 
-###Rspec、Guard、simplecov、Pelusa
-單元測試、自動化測試、覆蓋率測試、靜態分析
+###Rspec、Guard、simplecov
+單元測試、自動化測試、覆蓋率測試
 
 
 ######目前hack部分
@@ -40,7 +40,7 @@ EasyGo。以Ruby的Goliath為核心，為個人簡易開發即時性且具高效
 ```
 則可正常接收post request
 
-目前皆通過Rspec測試
+目前皆通過Rspec測試、以Pelusa做靜態分析
 
 待處理：WebSocket機制、將與ActiveMQ做串接
 
