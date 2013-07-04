@@ -10,9 +10,7 @@ class Api < Grape::API
   mount Users
 
   get '/test(.:format)' do
-    params do |p|
-      {p => params[p]}
-    end
+    params
   end
 
   def in_role?(role) 

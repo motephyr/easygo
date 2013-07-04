@@ -36,10 +36,11 @@ class Server < Goliath::WebSocket
 
   def on_body(env, data)
     if env.respond_to?(:handler)
-      super env, data
-    else
-      env['params'] = data
+      return super env, data
     end
+
+    env["rack.input"] = StringIO.new data
+
   end
 
   def response(env)

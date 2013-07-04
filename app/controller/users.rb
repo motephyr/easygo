@@ -4,7 +4,7 @@ class Users < Grape::API
 
   helpers do
     def find_user
-      User.find(params['id'])
+      User.find(params[:id])
     end
   end
 
@@ -22,27 +22,38 @@ class Users < Grape::API
 
     #create
     post '/' do
-      userparams = JSON.parse(env.params)
-      User.create!(userparams['user'])
+      User.create!(params[:user])
     end
 
     #edit
+    params do
+        requires :id, type: String
+    end
     get '/:id/edit' do
       find_user
     end
 
     #show
+    params do
+        requires :id, type: String
+    end
     get '/:id' do
       find_user
     end
 
     #update
+    params do
+        requires :id, type: String
+        requires :user, type: String
+    end
     put '/:id' do
-      userparams = JSON.parse(env.params)
-      find_user.update_attributes!(userparams['user'])
+      find_user.update_attributes!(params[:user])
     end
 
     #destory
+    params do
+        requires :id, type: String
+    end
     delete '/:id' do
       find_user.destroy
     end

@@ -9,7 +9,7 @@ describe Users do
   end
 
 
-  describe "GET /users" do
+  describe "Request /users" do
 
 
     it 'should be /user/ if request get "/users" ' do
@@ -39,7 +39,8 @@ describe Users do
     it 'should be create if request post "/" ' do
       request_data = {
         :path => '/users',
-        :body => '{"user":{"email":"David Jones","password":"this is my message"}}'
+        :body => '{"user":{"email":"David Jones","password":"this is my message"}}',
+        :head => {'content-type' => 'application/json'}
       }
       with_api(Server) do
         post_request(request_data) do |c|
@@ -78,11 +79,12 @@ describe Users do
     it 'should be update if request put "/users/:id" ' do
       request_data = {
         :path => $path,
-        :body => '{"user":{"email":"xx","password":"xx"}}'
+        :body => '{"user":{"email":"xx","password":"xx"}}',
+        :head => {'content-type' => 'application/json'}
       }
       with_api(Server) do
         put_request(request_data) do |c|
-          c.response == ''
+          c.response.should be_true
         end
       end
     end
