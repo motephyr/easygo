@@ -16,7 +16,6 @@ EasyGo。以Ruby的Goliath為核心，為個人簡易開發即時性且具高效
 單元測試、自動化測試、覆蓋率測試
 
 
-
 ######目前hack部分
 主程式繼承Goliath::WebSocket而非Goliath::API
 
@@ -25,22 +24,25 @@ EasyGo。以Ruby的Goliath為核心，為個人簡易開發即時性且具高效
 ```
   def on_body(env, data)
     if env.respond_to?(:handler)
-      env.handler.receive_data(data)
-    else
-      env['params'] = data
+      return super env, data
     end
+    env["rack.input"] = StringIO.new data
   end
 ```
 如此 users.rb
 
+
 ```
-    post '/create' do
-      params = JSON.parse(env.params)
-      User.create(params['user'])
+    #create
+    post '/' do
+      User.create!(params[:user])
     end
 ```
 則可正常接收post request
 
+目前皆通過Rspec測試、以Pelusa做靜態分析
+
+待處理：WebSocket機制、將與ActiveMQ做串接
 
 參考範例
 https://github.com/coshx/goliath-chat
