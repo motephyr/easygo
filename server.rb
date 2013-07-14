@@ -13,7 +13,7 @@ class Server < Goliath::WebSocket
   # render static files from ./public
   use(Rack::Static,                     
     :root => Goliath::Application.app_path("public"),
-    :urls => ["/favicon.ico",'/html', '/css', '/js', '/images'])
+    :urls => ["/bootstrap","/favicon.ico",'/html', '/css', '/js', '/images'])
 
   def on_open(env)
     env.logger.info("CHAT OPEN")
@@ -38,9 +38,7 @@ class Server < Goliath::WebSocket
     if env.respond_to?(:handler)
       return super env, data
     end
-
     env["rack.input"] = StringIO.new data
-
   end
 
   def response(env)
