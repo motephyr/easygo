@@ -12,7 +12,10 @@
         }
 
         var ws = new WebSocket("ws://localhost:9000/chat");
-        ws.onmessage = function(evt) { $("#msg").append("<p>" + evt.data + "</p>"); };
+        ws.onmessage = function(evt) { 
+          $("#msg").append("<p>" + evt.data + "</p>");
+          $("#wrap").scrollTop( $(document).height()+100 ); 
+        };
         ws.onclose = function() { debug("socket closed"); };
         ws.onopen = function() { debug("connected..."); };
 
