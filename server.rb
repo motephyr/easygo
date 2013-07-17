@@ -45,12 +45,10 @@ class Server < Goliath::WebSocket
     case env['REQUEST_PATH']
     when '/chat'
       super(env)
-    when '/'
-      [200, {}, erb(:index, :views => Goliath::Application.root_path('views'))]
-      #暫時以erb做樣版，不使用haml
-      #[200, {}, haml(:index)]
+    when /erb/
+      GoliathApi.new.call(env) 
     else
-      Api.call(env) 
+      GrapeApi.call(env) 
     end
   end
 
