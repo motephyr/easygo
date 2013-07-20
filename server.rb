@@ -4,6 +4,7 @@ Bundler.require
 require 'goliath/websocket'
 $:.unshift File.expand_path('..', __FILE__)
 require 'app/api'
+require 'app/lib/http'
 
 #require File.dirname(__FILE__) + '/config/application'
 
@@ -14,7 +15,8 @@ class Server < Goliath::WebSocket
   use(Rack::Static,                     
     :root => Goliath::Application.app_path("public"),
     :urls => ["/bootstrap","/favicon.ico",'/html', '/css', '/js', '/images'])
-
+  use Goliath::Rack::Params
+  
   def on_open(env)
     env.logger.info("CHAT OPEN")
     env['subscription'] = env.channel.subscribe { |m| env.stream_send(m) }
@@ -43,9 +45,11 @@ class Server < Goliath::WebSocket
 
   def response(env)
     case env['REQUEST_PATH']
+    when '/request'
+      [200, {},Tool::Http.new.request(params['url'])]
     when '/chat'
       super(env)
-    when /erb/
+    when '/', /erb/
       GoliathApi.new.call(env) 
     else
       GrapeApi.call(env) 

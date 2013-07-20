@@ -35,7 +35,7 @@ class GoliathApi < Goliath::API
 
   def response(env)
     case env['PATH_INFO']
-    when '/erb' , '/erb/' then [200, {}, erb(:index, :views => Goliath::Application.root_path('views'))]
+    when '/', '/erb' ,'/erb/' then [200, {}, erb(:index, :views => Goliath::Application.root_path('app/view'))]
     else                   raise Goliath::Validation::NotFoundError
     end
   end
