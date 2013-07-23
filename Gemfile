@@ -9,14 +9,20 @@ gem "coffee-script"
 
 gem "grape"
 #C's json Parser
-gem 'yajl-ruby'
+gem 'yajl-ruby',platform: :ruby
+
+#MQ
+gem 'amqp'
 
 #postgres
-gem 'pg'
-gem 'em-postgresql-adapter', :git => 'git://github.com/leftbee/em-postgresql-adapter.git'
+gem 'activerecord-jdbcpostgresql-adapter',platform: :jruby
+gem 'activerecord-jdbc-adapter',platform: :jruby
+gem 'pg',platform: :ruby
+gem 'em-postgresql-adapter', :git => 'git://github.com/leftbee/em-postgresql-adapter.git',platform: :ruby
+
 gem 'rack-fiber_pool',  :require => 'rack/fiber_pool'
 gem 'em-synchrony', :require => 'em-synchrony'
-gem 'activerecord', '~>3.1.0'
+gem 'activerecord', '~>4.0.0'
 
 #debug
 gem "pry"

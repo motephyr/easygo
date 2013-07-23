@@ -21,4 +21,6 @@ else # local environment
 end
 
 config['channel'] = EM::Channel.new
-ActiveSupport::JSON.backend = 'Yajl'
+
+#jruby can't use
+#ActiveSupport::JSON.backend = 'Yajl'
