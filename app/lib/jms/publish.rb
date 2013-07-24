@@ -1,7 +1,10 @@
 require 'rubygems'
+require 'yaml'
 require 'jms'
 
-# Connect to ActiveMQ
+jms_provider = ARGV[0] || 'activemq'
+
+# Load Connection parameters from configuration file
 config = {
     :factory => 'org.apache.activemq.ActiveMQConnectionFactory',
     :broker_url => 'tcp://127.0.0.1:61616',
@@ -12,7 +15,8 @@ config = {
 }
 
 JMS::Connection.session(config) do |session|
-    session.producer(:queue_name => 'ExampleQueue') do |producer|
-    producer.send(session.message("Hello World"))
-    end
+  session.producer(:topic_name => 'MobileNoticeDestination') do |producer|
+    producer.send(session.message("Hello World: #{Time.now}"))
+    JMS::logger.info "Successfully published one message to topic SampleTopic"
+  end
 end

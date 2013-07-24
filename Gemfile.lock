@@ -30,14 +30,6 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 0.3.37)
     addressable (2.3.5)
-    amq-client (1.0.2)
-      amq-protocol (>= 1.2.0)
-      eventmachine
-    amq-protocol (1.6.0)
-    amqp (1.0.2)
-      amq-client (~> 1.0.2)
-      amq-protocol (>= 1.3.0)
-      eventmachine
     arel (4.0.0)
     async-rack (0.5.1)
       rack (~> 1.1)
@@ -73,6 +65,7 @@ GEM
     ffi (1.9.0)
     ffi (1.9.0-java)
     formatador (0.2.4)
+    gene_pool (1.3.0)
     goliath (1.0.3)
       async-rack
       em-synchrony (>= 1.0.0)
@@ -110,6 +103,8 @@ GEM
     http_parser.rb (0.6.0.beta.2-java)
     i18n (0.6.4)
     jdbc-postgres (9.2.1002.1)
+    jruby-jms (1.0.0)
+      gene_pool
     listen (1.2.2)
       rb-fsevent (>= 0.9.3)
       rb-inotify (>= 0.9)
@@ -183,7 +178,6 @@ DEPENDENCIES
   activerecord (~> 4.0.0)
   activerecord-jdbc-adapter
   activerecord-jdbcpostgresql-adapter
-  amqp
   coffee-script
   em-http-request
   em-postgresql-adapter!
@@ -193,6 +187,7 @@ DEPENDENCIES
   guard
   guard-rspec
   haml
+  jruby-jms
   pg
   pry
   pry-nav
