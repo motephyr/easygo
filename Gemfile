@@ -12,7 +12,7 @@ gem "grape"
 gem 'yajl-ruby',platform: :ruby
 
 #MQ
-gem 'jruby-jms'
+gem 'jruby-jms',platform: :jruby
 
 #postgres
 gem 'activerecord-jdbcpostgresql-adapter',platform: :jruby
@@ -22,7 +22,7 @@ gem 'em-postgresql-adapter', :git => 'git://github.com/leftbee/em-postgresql-ada
 
 gem 'rack-fiber_pool',  :require => 'rack/fiber_pool'
 gem 'em-synchrony', :require => 'em-synchrony'
-gem 'activerecord', '~>4.0.0'
+gem 'activerecord', '~>3.2.14'
 
 #debug
 gem "pry"

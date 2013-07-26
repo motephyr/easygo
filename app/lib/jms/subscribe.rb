@@ -17,20 +17,33 @@ require 'rubygems'
 require 'jms'
 require 'yaml'
 
+
 jms_provider = ARGV[0] || 'activemq'
 
 # Load Connection parameters from configuration file
-config = {
-    :factory => 'org.apache.activemq.ActiveMQConnectionFactory',
-    :broker_url => 'tcp://127.0.0.1:61616',
-    :require_jars => [
-      "/usr/local/Cellar/activemq/5.8.0/libexec/activemq-all-5.8.0.jar",
-      "/usr/local/Cellar/activemq/5.8.0/libexec/lib/optional/log4j-1.2.17.jar"
-    ]
+class MQ < Goliath::WebSocket
+def startServer
+mqconfig = {
+  :factory => 'org.apache.activemq.ActiveMQConnectionFactory',
+  :broker_url => 'tcp://127.0.0.1:61616',
+  :require_jars => [
+    "/usr/local/Cellar/activemq/5.8.0/libexec/activemq-all-5.8.0.jar",
+    "/usr/local/Cellar/activemq/5.8.0/libexec/lib/optional/log4j-1.2.17.jar"
+  ]
 }
 
-JMS::Connection.session(config) do |session|
-  session.consume(:topic_name => 'MobileNoticeDestination', :timeout=>30000) do |message|
+
+
+JMS::Connection.session(mqconfig) do |session|
+  session.consume(:topic_name => 'MobileNoticeDestination', :timeout=>300000) do |message|
+    puts 'bb'
     JMS::logger.info message.inspect
+    config['channel'].push(message)
+    #測試websocket
   end
 end
+end
+end
+
+
+
