@@ -42,7 +42,7 @@ EasyGo。以Ruby的Goliath為核心，為個人簡易開發即時性且具高效
 
 目前皆通過Rspec測試、以Pelusa做靜態分析
 
-待處理：WebSocket機制、將與ActiveMQ做串接
+待處理：WebSocket機制範例
 
 參考範例
 https://github.com/coshx/goliath-chat

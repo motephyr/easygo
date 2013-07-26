@@ -1,6 +1,5 @@
 production: &production
-#  adapter: em_postgresql
-  adapter : jdbcpostgresql
+  adapter: em_postgresql
   encoding: unicode
   host    : localhost
   database: goliathgrape

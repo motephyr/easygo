@@ -23,4 +23,4 @@ end
 config['channel'] = EM::Channel.new
 
 #jruby can't use
-#ActiveSupport::JSON.backend = 'Yajl'
+ActiveSupport::JSON.backend = 'Yajl'
