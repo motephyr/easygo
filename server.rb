@@ -3,8 +3,8 @@ Bundler.require
 
 require 'goliath/websocket'
 $:.unshift File.expand_path('..', __FILE__)
-require 'app/api'
-require 'app/lib/http'
+Dir["app/api/*.rb"].each {|file| require file}
+
 
 #require File.dirname(__FILE__) + '/config/application'
 
@@ -45,11 +45,13 @@ class Server < Goliath::WebSocket
 
   def response(env)
     case env['REQUEST_PATH']
-    when '/request'
-      [200, {},Tool::Http.new.request(params['url'])]
     when '/chat'
       super(env)
-    when '/', /erb/
+    when '/upload'
+      AsyncUpload.new.call(env) 
+    when '/test'
+      Test.new.call(env)
+    when '/', /erb/ ,'/request'
       GoliathApi.new.call(env) 
     else
       GrapeApi.call(env) 

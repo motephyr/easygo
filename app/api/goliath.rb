@@ -1,28 +1,7 @@
-Dir["app/controller/*.rb"].each {|file| require file}
-Dir["app/model/*.rb"].each {|file| require file}
 require 'goliath/rack/templates'
 require 'goliath/plugins/latency'
-
-class GrapeApi < Grape::API
-
-  rescue_from :all do |e|
-    Rack::Response.new([ e.message ], 500, { "Content-type" => "application/json" }).finish
-  end
-
-  mount Users
-
-  get '/test(.:format)' do
-    params
-  end
-
-  def in_role?(role) 
-    role == @role
-  end
-
-  def assign_role(role)
-    @role = role
-  end
-end
+$:.unshift File.expand_path('..', __FILE__)
+require 'app/lib/http'
 
 class GoliathApi < Goliath::API
   include Goliath::Rack::Templates      # render templated files from ./views
@@ -36,6 +15,8 @@ class GoliathApi < Goliath::API
   def response(env)
     case env['PATH_INFO']
     when '/', '/erb' ,'/erb/' then [200, {}, erb(:index, :views => Goliath::Application.root_path('app/view'))]
+    when '/request'
+      [200, {},Tool::Http.new.request(params['url'])]
     else                   raise Goliath::Validation::NotFoundError
     end
   end
