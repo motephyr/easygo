@@ -6,7 +6,7 @@ require 'goliath/websocket'
 $:.unshift File.expand_path('..', __FILE__)
 require 'app/api'
 require 'app/lib/http'
-require 'app/lib/jms/subscribe'
+require 'app/lib/amqp/amqpTest'
 require 'java'
 
 class Server < Goliath::WebSocket
@@ -17,10 +17,6 @@ class Server < Goliath::WebSocket
     :root => Goliath::Application.app_path("public"),
     :urls => ["/bootstrap","/favicon.ico",'/html', '/css', '/js', '/images'])
   use Goliath::Rack::Params
-
-  Thread.new do
-    MQ.new.startServer 
-  end
   
   def on_open(env)
     env.logger.info("CHAT OPEN")

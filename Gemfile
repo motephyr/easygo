@@ -12,7 +12,8 @@ gem "grape"
 gem 'yajl-ruby',platform: :ruby
 
 #MQ
-gem 'jruby-jms',platform: :jruby
+gem 'amqp'
+#gem 'jruby-jms',platform: :jruby
 
 #postgres
 gem 'activerecord-jdbcpostgresql-adapter',platform: :jruby
